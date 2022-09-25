@@ -7,7 +7,7 @@
     "layer": [
         {
             "data": {
-                "url": "countryLayout.topojson",
+                "url": "https://raw.githubusercontent.com/rtan0053/FIT3179/main/js/countryLayout.topojson",
                 "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
             },
             "transform": [
@@ -15,7 +15,7 @@
                     "lookup": "properties.NAME",
                     "from": {
                         "data":{
-                            "url": "unemployment.csv"
+                            "url": "https://raw.githubusercontent.com/rtan0053/FIT3179/main/data/unemployment.csv"
                         },
                         "key": "country",
                         "fields": ["unemployment_percentage"]
@@ -25,7 +25,7 @@
                     "lookup": "properties.NAME",
                     "from":{
                         "data":{
-                            "url": "literacy_rate.csv"
+                            "url": "https://raw.githubusercontent.com/rtan0053/FIT3179/main/data/literacy_rate.csv"
                         },
                         "key": "country",
                         "fields": ["literacy_rate_percent_all"]
@@ -50,7 +50,7 @@
         },
         {
             "data": {
-                "url": "countryLayout.topojson",
+                "url": "https://raw.githubusercontent.com/rtan0053/FIT3179/main/js/countryLayout.topojson",
                 "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
             },
             "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
