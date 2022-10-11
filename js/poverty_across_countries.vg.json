@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 500,
+    "width": "container",
     "height": 500,
     "title": "Poverty Across Countries",
     "data": {
@@ -73,10 +73,6 @@
                         },
                         "size": {
                             "value": 2
-                        },
-                        "color": {
-                            "field": "event",
-                            "type": "nominal"
                         },
                         "tooltip": [
                             {
