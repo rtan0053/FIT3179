@@ -2,8 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "vconcat": [
         {
-            "width": 800,
-            "height": 450,
+            "width": 1000,
+            "height": 500,
             "title": "Unemployment Rate across the World",
             "projection": {
                 "type": "equalEarth"
@@ -131,8 +131,8 @@
             ]
         },
         {
-            "width": 800,
-            "height": 100,
+            "width": 1000,
+            "height": 150,
             "title": "Average Unemployment Rate (Click on a point)",
             "data": {
                 "url": "https://raw.githubusercontent.com/rtan0053/FIT3179/main/data/unemployment_years_clean.csv"
@@ -191,7 +191,7 @@
         {
             "hconcat": [
                 {
-                    "width": 400,
+                    "width": 500,
                     "height": 450,
                     "title": "Top Unemployed Countries by Year",
                     "data": {
@@ -317,7 +317,7 @@
                     ]
                 },
                 {
-                    "width": 400,
+                    "width": 500,
                     "height": 450,
                     "title": "Top Countries in Poverty",
                     "data": {
