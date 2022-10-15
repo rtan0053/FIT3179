@@ -1,0 +1,205 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Top Index for 2022",
+    "data": {
+        "url": "cost_of_living_index_2022.csv"
+    },
+    "width": 500,
+    "height": 450,
+    "params": [
+        {
+            "name": "param_selection",
+            "bind": {
+                "input": "select",
+                "options": [
+                    "cost_of_living_index",
+                    "local_purchasing_power_index",
+                    "rent_index",
+                    "living_rent_index",
+                    "groceries_index",
+                    "restaurant_price_index"
+                ],
+                "labels": [
+                    "Cost of Living Index",
+                    "Local Purchasing Power Index",
+                    "Cost of Rent Index",
+                    "Cost of Rent + Living Index",
+                    "Groceries Price Index",
+                    "Restaurant Price Index"
+                ],
+                "name": "Sort By: "
+            },
+            "value": "cost_of_living_index"
+        }
+    ],
+    "transform": [
+        {
+            "calculate": "parseFloat(datum[param_selection])",
+            "as": "data_selected"
+        },
+        {
+            "window": [
+                {
+                    "op": "dense_rank",
+                    "field": "data_selected",
+                    "as": "rank"
+                }
+            ],
+            "sort": [
+                {
+                    "field": "data_selected",
+                    "order": "descending"
+                }
+            ]
+        },
+        {
+            "filter": "datum.rank <= 10"
+        }
+    ],
+    "layer": [
+        {
+            "transform": [
+                {
+                    "fold": [
+                        "cost_of_living_index",
+                        "local_purchasing_power_index",
+                        "rent_index",
+                        "living_rent_index",
+                        "groceries_index",
+                        "restaurant_price_index"
+                    ],
+                    "as": [
+                        "index",
+                        "value"
+                    ]
+                }
+            ],
+            "mark": "bar",
+            "encoding": {
+                "x": {
+                    "field": "value",
+                    "type": "quantitative",
+                    "title": "Percentage Index (%)"
+                },
+                "yOffset": {
+                    "field": "index"
+                },
+                "color": {
+                    "field": "index",
+                    "title": "Percentage Cost Index",
+                    "legend": {
+                        "labelExpr": "{'cost_of_living_index' : 'Cost of Living', 'local_purchasing_power_index' : 'Local Purchasing Power', 'rent_index': 'Rent', 'living_rent_index': 'Living + Rent', 'groceries_index' : 'Groceries', 'restaurant_price_index' : 'Restaurant Price'}[datum.label]"
+                    }
+                },
+                "y": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "title": "Country",
+                    "sort": {
+                        "field": "data_selected",
+                        "order": "descending"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal",
+                        "title": "Country"
+                    },
+                    {
+                        "field": "cost_of_living_index",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Living Cost (%)"
+                    },
+                    {
+                        "field": "local_purchasing_power_index",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Local Purchasing Power (%)"
+                    },
+                    {
+                        "field": "rent_index",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Rent Cost (%)"
+                    },
+                    {
+                        "field": "living_rent_index",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Living + Rent Cost (%)"
+                    },
+                    {
+                        "field": "groceries_index",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Groceries Cost (%)"
+                    },
+                    {
+                        "field": "restaurant_price_index",
+                        "type": "quantitative",
+                        "format": ".2f",
+                        "title": "Restaurant Price (%)"
+                    }
+                ]
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {
+                        "index": 100,
+                        "event": "Every Country's Index is compared to New York"
+                    }
+                ]
+            },
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "field": "index",
+                    "type": "quantitative"
+                },
+                "tooltip": [
+                    {
+                        "field": "event",
+                        "type": "nominal",
+                        "title": "Description"
+                    }
+                ]
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {
+                        "index": 100,
+                        "event": "New York's Index",
+                        "description": "Every Country's Index is compared to New York"
+                    }
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5
+            },
+            "encoding": {
+                "x": {
+                    "field": "index",
+                    "type": "quantitative"
+                },
+                "text":{
+                    "field": "event"
+                },
+                "tooltip": [
+                    {
+                        "field": "description",
+                        "type": "nominal",
+                        "title": "Description"
+                    }
+                ]
+            }
+        }
+    ]
+}
