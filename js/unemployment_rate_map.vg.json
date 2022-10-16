@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "vconcat": [
         {
-            "width": 1000,
+            "width": "container",
             "height": 500,
             "title": "Unemployment Rate across the World",
             "projection": {
@@ -129,7 +129,10 @@
                                     "#a63603"
                                 ]
                             },
-                            "legend": null
+                            "legend": {
+                                "direction": "vertical",
+                                "orient": "top-left"
+                            }
                         },
                         "strokeOpacity": {
                             "condition": {
@@ -201,7 +204,7 @@
                     ],
                     "mark": {
                         "type": "text",
-                        "x": 500,
+                        "align": "center",
                         "y": 450,
                         "fontWeight": "lighter",
                         "fontSize": 15
@@ -263,7 +266,7 @@
             ]
         },
         {
-            "width": 1000,
+            "width": "container",
             "height": 150,
             "title": "Average Unemployment Rate (Click on a point)",
             "data": {
@@ -289,7 +292,11 @@
             ],
             "mark": {
                 "type": "line",
-                "point": true
+                "point": {
+                    "fill": "white",
+                    "filled": false,
+                    "size": 60
+                }
             },
             "encoding": {
                 "x": {
@@ -329,7 +336,7 @@
         {
             "hconcat": [
                 {
-                    "width": 500,
+                    "width": 650,
                     "height": 450,
                     "title": "Top Unemployed Countries by Year",
                     "data": {
@@ -508,7 +515,7 @@
                     ]
                 },
                 {
-                    "width": 500,
+                    "width": 650,
                     "height": 450,
                     "title": "Top Countries in Poverty",
                     "data": {

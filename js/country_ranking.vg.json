@@ -4,7 +4,7 @@
     "data": {
         "url": "https://raw.githubusercontent.com/rtan0053/FIT3179/main/data/country_index.csv"
     },
-    "width": 500,
+    "width": "container",
     "height": 450,
     "params": [
         {
@@ -13,9 +13,9 @@
             "bind": {
                 "input": "range",
                 "min": 2001,
-                "max": 2021,
+                "max": 2020,
                 "step": 1,
-                "name": "Starting Year"
+                "name": "Year: "
             }
         }
     ],

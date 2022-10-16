@@ -9,7 +9,7 @@
     "params": [
         {
             "name": "starting_year",
-            "value": 2010,
+            "value": 2003,
             "bind": {
                 "input": "range",
                 "min": 1967,
@@ -33,9 +33,10 @@
                     "Belgium",
                     "Japan",
                     "Canada",
-                    "Thailand",
                     "Ecuador",
-                    "Belarus"
+                    "Belarus",
+                    "Iraq",
+                    "Greece"
                 ]
             }
         },
@@ -49,28 +50,30 @@
     ],
     "layer": [
         {
+            "data": {
+                "values": [
+                    {
+                        "Year": "2020",
+                        "event": "Covid Started"
+                    }
+                ],
+                "format": {
+                    "parse": {
+                        "Year": "date:'%Y'"
+                    }
+                }
+            },
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "temporal",
+                    "timeUnit": "year"
+                }
+            },
             "layer": [
                 {
                     "mark": "rule",
-                    "data": {
-                        "values": [
-                            {
-                                "Year": "2020",
-                                "event": "Covid Started"
-                            }
-                        ],
-                        "format": {
-                            "parse": {
-                                "Year": "date:'%Y'"
-                            }
-                        }
-                    },
                     "encoding": {
-                        "x": {
-                            "field": "Year",
-                            "type": "temporal",
-                            "timeUnit": "year"
-                        },
                         "size": {
                             "value": 2
                         },
@@ -86,12 +89,72 @@
                 {
                     "mark": {
                         "type": "text",
-                        "align": "center",
-                        "baseline": "middle",
-                        "dx": -2,
-                        "dy": -2,
-                        "x": "width",
-                        "text": "Covid Started"
+                        "align": "left",
+                        "dx": 2
+                    },
+                    "encoding": {
+                        "text": {
+                            "field": "event"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "data": {
+                "values": [
+                    {
+                        "start": 2003,
+                        "end": 2011,
+                        "event": "Iraq War"
+                    }
+                ],
+                "format": {
+                    "parse": {
+                        "start": "date:'%Y'",
+                        "end": "date:'%Y'"
+                    }
+                }
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rect",
+                        "color": "lightgray",
+                        "opacity": 0.5
+                    },
+                    "encoding": {
+                        "x": {
+                            "field": "start",
+                            "timeUnit": "year"
+                        },
+                        "x2": {
+                            "field": "end",
+                            "timeUnit": "year"
+                        },
+                        "text": {
+                            "field": "event"
+                        },
+                        "tooltip": {
+                            "field": "event",
+                            "type": "nominal",
+                            "title": "Event"
+                        }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "align": "left",
+                        "dx": 20
+                    },
+                    "encoding": {
+                        "text": {
+                            "field": "event"
+                        },
+                        "x":{
+                            "field": "start"
+                        }
                     }
                 }
             ]
@@ -99,7 +162,10 @@
         {
             "mark": {
                 "type": "line",
-                "point": true
+                "point": {
+                    "filled": false,
+                    "fill": "white"
+                }
             },
             "params": [
                 {
@@ -127,7 +193,10 @@
                 },
                 "color": {
                     "field": "Entity",
-                    "title": "Countries (Click on the Legend)"
+                    "title": "Countries (Click on the Legend)",
+                    "legend": {
+                        "symbolType": "square"
+                    }
                 },
                 "opacity": {
                     "condition": {
